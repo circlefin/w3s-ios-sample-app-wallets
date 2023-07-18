@@ -23,7 +23,7 @@ struct ContentView: View {
     @State var appId = "your-app-id" // put your App ID here programmatically
 
     @State var userToken = ""
-    @State var secretKey = ""
+    @State var encryptionKey = ""
     @State var challengeId = ""
 
     @State var showToast = false
@@ -37,14 +37,14 @@ struct ContentView: View {
                 sectionEndPoint
                 sectionInputField("App ID", binding: $appId)
                 sectionInputField("User Token", binding: $userToken)
-                sectionInputField("Secret Key", binding: $secretKey)
+                sectionInputField("Encryption Key", binding: $encryptionKey)
                 sectionInputField("Challenge ID", binding: $challengeId)
                 sectionExecuteButton
 
                 Spacer()
 //                TestButtons
             }
-//            versionText
+            versionText
         }
         .scrollContentBackground(.hidden)
         .onAppear {
@@ -68,7 +68,7 @@ struct ContentView: View {
     }
 
     var versionText: some View {
-        Text("v\(Utility.appVersion() ?? "")").font(.footnote)
+        Text("CircleProgrammableWalletSDK - \(WalletSdk.shared.sdkVersion() ?? "")").font(.footnote)
     }
 
     var sectionEndPoint: some View {
@@ -91,9 +91,9 @@ struct ContentView: View {
     var sectionExecuteButton: some View {
         Button {
             guard !userToken.isEmpty else { showToast(.general, message: "User Token is Empty"); return }
-            guard !secretKey.isEmpty else { showToast(.general, message: "Secret Key is Empty"); return }
+            guard !encryptionKey.isEmpty else { showToast(.general, message: "Encryption Key is Empty"); return }
             guard !challengeId.isEmpty else { showToast(.general, message: "Challenge ID is Empty"); return }
-            executeChallenge(userToken: userToken, secretKey: secretKey, challengeId: challengeId)
+            executeChallenge(userToken: userToken, encryptionKey: encryptionKey, challengeId: challengeId)
 
         } label: {
             Text("Execute")
@@ -126,9 +126,9 @@ extension ContentView {
         }
     }
 
-    func executeChallenge(userToken: String, secretKey: String, challengeId: String) {
+    func executeChallenge(userToken: String, encryptionKey: String, challengeId: String) {
         WalletSdk.shared.execute(userToken: userToken,
-                                 secretKey: secretKey,
+                                 encryptionKey: encryptionKey,
                                  challengeIds: [challengeId]) { response in
             switch response.result {
             case .success(let result):
@@ -167,19 +167,19 @@ extension ContentView {
     }
 
     func newPIN() {
-        WalletSdk.shared.execute(userToken: "", secretKey: "", challengeIds: ["ui_new_pin"])
+        WalletSdk.shared.execute(userToken: "", encryptionKey: "", challengeIds: ["ui_new_pin"])
     }
 
     func enterPIN() {
-        WalletSdk.shared.execute(userToken: "", secretKey: "", challengeIds: ["ui_enter_pin"])
+        WalletSdk.shared.execute(userToken: "", encryptionKey: "", challengeIds: ["ui_enter_pin"])
     }
 
     func changePIN() {
-        WalletSdk.shared.execute(userToken: "", secretKey: "", challengeIds: ["ui_change_pin"])
+        WalletSdk.shared.execute(userToken: "", encryptionKey: "", challengeIds: ["ui_change_pin"])
     }
 
     func restorePIN() {
-        WalletSdk.shared.execute(userToken: "", secretKey: "", challengeIds: ["ui_restore_pin"])
+        WalletSdk.shared.execute(userToken: "", encryptionKey: "", challengeIds: ["ui_restore_pin"])
     }
 }
 
