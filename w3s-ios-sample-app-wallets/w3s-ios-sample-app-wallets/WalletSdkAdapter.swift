@@ -24,6 +24,7 @@ class WalletSdkAdapter {
         self.updateEndPoint(endPoint, appId: appId)
 
         WalletSdk.shared.setLayoutProvider(self)
+        WalletSdk.shared.setErrorMessenger(self)
         WalletSdk.shared.setDelegate(self)
     }
 
@@ -78,7 +79,20 @@ extension WalletSdkAdapter: WalletSdkLayoutProvider {
             .securityConfirmMain: UIImage(named: "img_driver_blog")!
         ]
 
-        let remote: [ImageStore.Img : URL] = [:]
+        let remote: [ImageStore.Img: URL] = [:]
+
+//        // Sample for remote images
+//        let remote: [ImageStore.Img: URL]
+//        let imageUrl1 = URL(string: "https://www.circle.com/hs-fs/hubfs/Sundaes/810/global-payments-810x810.png")
+//        let imageUrl2 = URL(string: "https://www.circle.com/hs-fs/hubfs/Sundaes/810/Trust-810x810.png")
+//        if let imageUrl1, let imageUrl2 {
+//            remote = [
+//                .securityIntroMain: imageUrl1,
+//                .securityConfirmMain: imageUrl2,
+//            ]
+//        } else {
+//            remote = [:]
+//        }
 
         return ImageStore(local: local, remote: remote)
     }
@@ -86,6 +100,21 @@ extension WalletSdkAdapter: WalletSdkLayoutProvider {
     func displayDateFormat() -> String {
         return "yyyy/MM/dd"
     }
+
+//    // Sample for set ThemeFont programmatically
+//    func themeFont() -> ThemeConfig.ThemeFont? {
+//        return ThemeConfig.ThemeFont(
+//            ultraLight: nil,
+//            thin: nil,
+//            light: "CustomFont-Light",
+//            regular: "CustomFont-Regular",
+//            medium: "CustomFont-Medium",
+//            semibold: "CustomFont-SemiBold",
+//            bold: "CustomFont-Bold",
+//            heavy: nil,
+//            black: nil
+//        )
+//    }
 }
 
 
@@ -93,9 +122,38 @@ extension WalletSdkAdapter: WalletSdkDelegate {
 
     func walletSdk(willPresentController controller: UIViewController) {
         print("willPresentController: \(controller)")
+
+//        // Sample for manipulate UI items
+//        if let controller = controller as? NewPINCodeViewController {
+//            controller.titleLabel1.text = "Hello World"
+//            controller.titleLabel1.textColor = .blue
+//            controller.titleLabel1.font = .systemFont(ofSize: 28, weight: .black)
+//
+//        }
+//
+//        if let controller = controller as? SecurityConfirmViewController {
+//            controller.imageBgView.backgroundColor = .blue
+//            controller.imageView.contentMode = .scaleAspectFill
+//        }
     }
 
     func walletSdk(controller: UIViewController, onForgetPINButtonSelected onSelect: Void) {
         print("onForgetPINButtonSelected")
+    }
+}
+
+extension WalletSdkAdapter: ErrorMessenger {
+
+    func getErrorString(_ code: ApiError.ErrorCode) -> String? {
+        switch code {
+        case .hintsMatchAnswers:
+            return "Your custom error message."
+
+        case .networkError:
+            return "Your custom error message."
+
+        default:
+            return nil
+        }
     }
 }
