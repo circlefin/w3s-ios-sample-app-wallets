@@ -13,7 +13,7 @@
 #  limitations under the License.
 
 source 'https://github.com/CocoaPods/Specs.git'
-source 'https://github.com/circlefin/w3s-ios-sdk-podspecs.git'
+source 'https://github.com/circlefin/w3s-ios-sdk.git'
 
 target 'w3s-ios-sample-app-wallets' do
   # Comment the next line if you don't want to use dynamic frameworks
