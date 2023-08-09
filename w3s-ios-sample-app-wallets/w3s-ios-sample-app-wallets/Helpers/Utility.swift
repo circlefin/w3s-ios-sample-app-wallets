@@ -12,29 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import SwiftUI
-import Firebase
+import Foundation
 
-@main
-struct w3s_ios_sample_app_walletsApp: App {
-    var appState = AppState()
-    
-    init() {
-        setupAuthentication()
-    }
-    
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-                .environmentObject(appState)
-                .environmentObject(appState.authViewModel)
-                .environmentObject(appState.circleWalletViewModel)
-        }
-    }
-}
+struct Utility {
 
-extension w3s_ios_sample_app_walletsApp {
-    private func setupAuthentication() {
-        FirebaseApp.configure()
+    static func appVersion() -> String? {
+        return Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
     }
+
+    static func appBuildNumber() -> String? {
+        return Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String
+    }
+
 }
