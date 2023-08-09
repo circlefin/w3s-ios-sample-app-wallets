@@ -13,28 +13,19 @@
 // limitations under the License.
 
 import SwiftUI
-import Firebase
+import GoogleSignIn
 
-@main
-struct w3s_ios_sample_app_walletsApp: App {
-    var appState = AppState()
+struct GoogleSignInButton: UIViewRepresentable {
+    @Environment(\.colorScheme) var colorScheme
     
-    init() {
-        setupAuthentication()
+    private var button = GIDSignInButton()
+    
+    func makeUIView(context: Context) -> GIDSignInButton {
+        button.colorScheme = colorScheme == .dark ? .dark : .light
+        return button
     }
     
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-                .environmentObject(appState)
-                .environmentObject(appState.authViewModel)
-                .environmentObject(appState.circleWalletViewModel)
-        }
-    }
-}
-
-extension w3s_ios_sample_app_walletsApp {
-    private func setupAuthentication() {
-        FirebaseApp.configure()
+    func updateUIView(_ uiView: UIViewType, context: Context) {
+        button.colorScheme = colorScheme == .dark ? .dark : .light
     }
 }
