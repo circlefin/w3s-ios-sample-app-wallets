@@ -17,7 +17,7 @@ import SwiftUI
 struct Toast: ViewModifier {
 
     static let short: TimeInterval = 2
-    static let long: TimeInterval = 3.5
+    static let long: TimeInterval = 5
 
     let message: String
     @Binding var isShowing: Bool

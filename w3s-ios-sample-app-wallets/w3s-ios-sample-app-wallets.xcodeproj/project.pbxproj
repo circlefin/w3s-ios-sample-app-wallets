@@ -14,7 +14,6 @@
 		B3BEDEDE2A5064E800861533 /* WalletSdkAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BEDEDC2A5064E800861533 /* WalletSdkAdapter.swift */; };
 		B3BEDEDF2A5064E800861533 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BEDEDD2A5064E800861533 /* ContentView.swift */; };
 		B3BEDEE62A50651700861533 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BEDEE32A50651700861533 /* UserDefault.swift */; };
-		B3BEDEE72A50651700861533 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BEDEE42A50651700861533 /* Utility.swift */; };
 		B3BEDEE82A50651700861533 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BEDEE52A50651700861533 /* Toast.swift */; };
 		B3BEDEEA2A50653C00861533 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3BEDEE92A50653B00861533 /* Assets.xcassets */; };
 		CC2584A32A54CD0F00FCDBE8 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CC2584A22A54CD0F00FCDBE8 /* FirebaseAuth */; };
@@ -37,7 +36,6 @@
 		B3BEDEDC2A5064E800861533 /* WalletSdkAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletSdkAdapter.swift; sourceTree = "<group>"; };
 		B3BEDEDD2A5064E800861533 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B3BEDEE32A50651700861533 /* UserDefault.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
-		B3BEDEE42A50651700861533 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		B3BEDEE52A50651700861533 /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		B3BEDEE92A50653B00861533 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CC2584A42A54D0B200FCDBE8 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
@@ -134,7 +132,6 @@
 			isa = PBXGroup;
 			children = (
 				B3BEDEE32A50651700861533 /* UserDefault.swift */,
-				B3BEDEE42A50651700861533 /* Utility.swift */,
 				B3BEDEE52A50651700861533 /* Toast.swift */,
 			);
 			path = Helpers;
@@ -263,7 +260,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3BEDEE72A50651700861533 /* Utility.swift in Sources */,
 				B3BEDEE82A50651700861533 /* Toast.swift in Sources */,
 				CC2584A52A54D0B200FCDBE8 /* AuthenticationViewModel.swift in Sources */,
 				CC2584AE2A54D30A00FCDBE8 /* HomeView.swift in Sources */,
