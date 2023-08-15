@@ -59,11 +59,11 @@ extension WalletSdkAdapter: WalletSdkLayoutProvider {
 
     func securityConfirmItems() -> [SecurityConfirmItem] {
         return [
-            SecurityConfirmItem(image: UIImage(named: "img_info"),
+            SecurityConfirmItem(image: UIImage(named: "img_item_1"),
                                 text: "This is the only way to recover my account access."),
-            SecurityConfirmItem(image: UIImage(named: "img_claim_success"),
+            SecurityConfirmItem(image: UIImage(named: "img_item_2"),
                                 text: "Circle won’t store my answers so it’s my responsibility to remember them."),
-            SecurityConfirmItem(image: UIImage(named: "img_claim_success"),
+            SecurityConfirmItem(image: UIImage(named: "img_item_3"),
                                 text: "I will lose access to my wallet and my digital assets if I forget my answers."),
         ]
     }
@@ -76,7 +76,7 @@ extension WalletSdkAdapter: WalletSdkLayoutProvider {
             .dropdownArrow: UIImage(named: "ic_trailing_down")!,
             .errorInfo: UIImage(named: "ic_warning_alt")!,
             .securityIntroMain: UIImage(named: "img_security_intro")!,
-            .securityConfirmMain: UIImage(named: "img_driver_blog")!
+            .securityConfirmMain: UIImage(named: "img_confirmation")!
         ]
 
         let remote: [ImageStore.Img: URL] = [:]

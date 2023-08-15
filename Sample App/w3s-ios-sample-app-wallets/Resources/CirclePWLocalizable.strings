@@ -1,0 +1,72 @@
+/*
+ * Loco ios export: iOS Localizable.strings
+ * Project: strings.xml conversion
+ * Release: Working copy
+ * Locale: en, English
+ * Exported by: Circle
+ * Exported at: Thu, 24 May 2023 11:46:13 +0800
+ */
+
+// [General]
+"circlepw_show_pin" = "Show PIN";
+"circlepw_hide_pin" = "Hide PIN";
+"circlepw_continue" = "Continue";
+"circlepw_next" = "Next";
+"circlepw_confirm" = "Confirm";
+
+"circlepw_question" = "Question";
+"circlepw_answer" = "Answer";
+"circlepw_hint" = "Hint";
+"circlepw_empty_placeholder" = "-";
+
+// [Page] EnterPINCode
+"circlepw_enter_pincode_headline" = "Enter your";
+"circlepw_enter_pincode_headline_2" = "PIN";
+"circlepw_enter_pincode_subhead" = "Let us know if it’s really you.";
+"circlepw_enter_pincode_forgot_pin" = "Forgot PIN?";
+
+// [Page] NewPINCode
+"circlepw_new_pincode_headline" = "Enter your";
+"circlepw_new_pincode_headline_2" = "New PIN";
+"circlepw_new_pincode_subhead" = "Your PIN can’t have repeating (e.g. 000000) or consecutive (e.g. 123456) numbers.";
+
+// [Page] ConfirmPINCode
+"circlepw_confirm_pincode_headline" = "Re-enter your PIN to confirm";
+"circlepw_confirm_pincode_headline_2" = "";
+"circlepw_confirm_pincode_subhead" = "";
+
+// [Page] SecurityIntros
+"circlepw_security_intros_headline" = "Set up your";
+"circlepw_security_intros_headline_2" = "Recovery Method";
+"circlepw_security_intros_description" = "This is the only way to recover wallet access if you forget your PIN. Pick 2 security questions and provide answers for access recovery.";
+"circlepw_security_intros_link" = "Learn more";
+
+// [Page] SecurityQuestions
+"circlepw_security_questions_title" = "Recovery method";
+"circlepw_security_questions_question_header" = "Choose your %@ question";
+"circlepw_security_questions_question_placeholder" = "Select one question";
+"circlepw_security_questions_required_mark" = "*";
+"circlepw_security_questions_answer_header" = "Provide an answer";
+"circlepw_security_questions_answer_placeholder" = "Type your answer here";
+"circlepw_security_questions_answer_hint_header" = "Provide an answer hint (optional)";
+"circlepw_security_questions_answer_hint_placeholder" = "Type your hint here";
+
+// [Page] SelectQuestion
+"circlepw_select_question_title" = "Select one question";
+
+// [Page] SecuritySummary
+"circlepw_security_summary_title" = "Summary";
+
+// [Page] SecurityConfirm
+"circlepw_security_confirm_title" = "Confirmation";
+"circlepw_security_confirm_headline" = "Keep your questions safe";
+"circlepw_security_confirm_input_headline" = "Type “I agree” to proceed:";
+"circlepw_security_confirm_input_placeholder" = "Type “I agree” here";
+"circlepw_security_confirm_input_match" = "I agree";
+
+// [Page] RecoverPINCode
+"circlepw_recover_pincode_headline" = "Recover your";
+"circlepw_recover_pincode_headline_2" = "PIN";
+"circlepw_recover_pincode_subhead" = "Please enter the answer of the security questions provided below.";
+"circlepw_recover_pincode_answer_input_header" = "Enter your answer here";
+"circlepw_recover_pincode_answer_input_placeholder" = "Type your answer here";

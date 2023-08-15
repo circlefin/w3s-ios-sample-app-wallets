@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8A87EF21CDDBF222A8D83F4F /* Pods_w3s_ios_sample_app_wallets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F095FAC15E5990E5728EEDA8 /* Pods_w3s_ios_sample_app_wallets.framework */; };
-		B36D066F2A5E53610058C66C /* CirclePWTheme.json in Resources */ = {isa = PBXBuildFile; fileRef = B36D066E2A5E53610058C66C /* CirclePWTheme.json */; };
+		B369BA902A8BF600007DEC09 /* CirclePWTheme.json in Resources */ = {isa = PBXBuildFile; fileRef = B369BA8E2A8BF600007DEC09 /* CirclePWTheme.json */; };
+		B369BA912A8BF600007DEC09 /* CirclePWLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B369BA8F2A8BF600007DEC09 /* CirclePWLocalizable.strings */; };
 		B3A66CE72A5B03F200FB0B2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3A66CE62A5B03F200FB0B2E /* Assets.xcassets */; };
 		B3BEDECF2A50648300861533 /* w3s_ios_sample_app_walletsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BEDECE2A50648300861533 /* w3s_ios_sample_app_walletsApp.swift */; };
 		B3BEDED62A50648400861533 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3BEDED52A50648400861533 /* Preview Assets.xcassets */; };
@@ -20,7 +21,8 @@
 
 /* Begin PBXFileReference section */
 		2A3CF7646C645C27CFAD775D /* Pods-w3s-ios-sample-app-wallets.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-w3s-ios-sample-app-wallets.debug.xcconfig"; path = "Target Support Files/Pods-w3s-ios-sample-app-wallets/Pods-w3s-ios-sample-app-wallets.debug.xcconfig"; sourceTree = "<group>"; };
-		B36D066E2A5E53610058C66C /* CirclePWTheme.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CirclePWTheme.json; sourceTree = "<group>"; };
+		B369BA8E2A8BF600007DEC09 /* CirclePWTheme.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CirclePWTheme.json; sourceTree = "<group>"; };
+		B369BA8F2A8BF600007DEC09 /* CirclePWLocalizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = CirclePWLocalizable.strings; sourceTree = "<group>"; };
 		B3A66CE62A5B03F200FB0B2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B3BEDECB2A50648300861533 /* w3s-ios-sample-app-wallets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "w3s-ios-sample-app-wallets.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3BEDECE2A50648300861533 /* w3s_ios_sample_app_walletsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = w3s_ios_sample_app_walletsApp.swift; sourceTree = "<group>"; };
@@ -114,7 +116,8 @@
 			isa = PBXGroup;
 			children = (
 				B3A66CE62A5B03F200FB0B2E /* Assets.xcassets */,
-				B36D066E2A5E53610058C66C /* CirclePWTheme.json */,
+				B369BA8F2A8BF600007DEC09 /* CirclePWLocalizable.strings */,
+				B369BA8E2A8BF600007DEC09 /* CirclePWTheme.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -179,8 +182,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B36D066F2A5E53610058C66C /* CirclePWTheme.json in Resources */,
+				B369BA902A8BF600007DEC09 /* CirclePWTheme.json in Resources */,
 				B3A66CE72A5B03F200FB0B2E /* Assets.xcassets in Resources */,
+				B369BA912A8BF600007DEC09 /* CirclePWLocalizable.strings in Resources */,
 				B3BEDED62A50648400861533 /* Preview Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
