@@ -81,7 +81,7 @@ extension WalletSdkAdapter: WalletSdkLayoutProvider {
 
         let remote: [ImageStore.Img: URL] = [:]
 
-//        // Sample for remote images
+        // MARK: Sample - Remote images
 //        let remote: [ImageStore.Img: URL]
 //        let imageUrl1 = URL(string: "https://www.circle.com/hs-fs/hubfs/Sundaes/810/global-payments-810x810.png")
 //        let imageUrl2 = URL(string: "https://www.circle.com/hs-fs/hubfs/Sundaes/810/Trust-810x810.png")
@@ -101,7 +101,7 @@ extension WalletSdkAdapter: WalletSdkLayoutProvider {
         return "yyyy/MM/dd"
     }
 
-//    // Sample for set ThemeFont programmatically
+    // MARK: Sample - Set theme & font programmatically
 //    func themeFont() -> ThemeConfig.ThemeFont? {
 //        return ThemeConfig.ThemeFont(
 //            ultraLight: nil,
@@ -123,7 +123,7 @@ extension WalletSdkAdapter: WalletSdkDelegate {
     func walletSdk(willPresentController controller: UIViewController) {
         print("willPresentController: \(controller)")
 
-//        // Sample for manipulate UI items
+        // MARK: Sample - UI manipuation in run time
 //        if let controller = controller as? NewPINCodeViewController {
 //            controller.titleLabel1.text = "Hello World"
 //            controller.titleLabel1.textColor = .blue
@@ -145,15 +145,19 @@ extension WalletSdkAdapter: WalletSdkDelegate {
 extension WalletSdkAdapter: ErrorMessenger {
 
     func getErrorString(_ code: ApiError.ErrorCode) -> String? {
-        switch code {
-        case .hintsMatchAnswers:
-            return "Your custom error message."
 
-        case .networkError:
-            return "Your custom error message."
+        return nil
 
-        default:
-            return nil
-        }
+        // MARK: Sample -  Error message customization
+//        switch code {
+//        case .hintsMatchAnswers:
+//            return "Your custom error message."
+//
+//        case .networkError:
+//            return "Your custom error message."
+//
+//        default:
+//            return nil
+//        }
     }
 }
