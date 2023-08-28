@@ -45,11 +45,13 @@ extension WalletSdkAdapter: WalletSdkLayoutProvider {
 
     func securityQuestions() -> [SecurityQuestion] {
         return [
-            SecurityQuestion(title: "What is your childhood nickname?", inputType: .text),
-            SecurityQuestion(title: "What is the middle name of your oldest child?", inputType: .text),
-            SecurityQuestion(title: "What is your favorite team?", inputType: .text),
-            SecurityQuestion(title: "When was your birthday?", inputType: .datePicker),
-            SecurityQuestion(title: "When is your marriage anniversary?", inputType: .datePicker),
+            SecurityQuestion(title: "What is your father’s middle name?", inputType: .text),
+            SecurityQuestion(title: "What is your favorite sports team?", inputType: .text),
+            SecurityQuestion(title: "What is your mother’s maiden name?", inputType: .text),
+            SecurityQuestion(title: "What is the name of your first pet?", inputType: .text),
+            SecurityQuestion(title: "What is the name of the city you were born in?", inputType: .text),
+            SecurityQuestion(title: "What is the name of the first street you lived on?", inputType: .text),
+            SecurityQuestion(title: "When is your father’s birthday?", inputType: .datePicker),
         ]
     }
 
