@@ -19,7 +19,7 @@ struct ContentView: View {
 
     let adapter = WalletSdkAdapter()
 
-    let endPoint = "https://api.circle.com/v1/w3s"
+    let endPoint = "https://enduser-sdk.circle.com/v1/w3s"
     @State var appId = "your-app-id" // put your App ID here programmatically
 
     @State var userToken = ""
