@@ -8,11 +8,10 @@
  */
 
 // [General]
-"circlepw_show_pin" = "Show PIN";
-"circlepw_hide_pin" = "Hide PIN";
 "circlepw_continue" = "Continue";
 "circlepw_next" = "Next";
 "circlepw_confirm" = "Confirm";
+"circlepw_skip" = "Skip";
 
 "circlepw_question" = "Question";
 "circlepw_answer" = "Answer";
@@ -24,6 +23,7 @@
 "circlepw_enter_pincode_headline_2" = "PIN";
 "circlepw_enter_pincode_subhead" = "Let us know if it’s really you.";
 "circlepw_enter_pincode_forgot_pin" = "Forgot PIN?";
+"circlepw_enter_pincode_use_biometrics" = "Use Biometrics";
 
 // [Page] NewPINCode
 "circlepw_new_pincode_headline" = "Enter your";
@@ -36,13 +36,14 @@
 "circlepw_confirm_pincode_subhead" = "";
 
 // [Page] SecurityIntros
+"circlepw_security_intros_title" = "Recovery Method";
 "circlepw_security_intros_headline" = "Set up your";
 "circlepw_security_intros_headline_2" = "Recovery Method";
 "circlepw_security_intros_description" = "This is the only way to recover wallet access if you forget your PIN. Pick 2 security questions and provide answers for access recovery.";
 "circlepw_security_intros_link" = "Learn more";
 
 // [Page] SecurityQuestions
-"circlepw_security_questions_title" = "Recovery method";
+"circlepw_security_questions_title" = "Recovery Method";
 "circlepw_security_questions_question_header" = "Choose your %@ question";
 "circlepw_security_questions_question_placeholder" = "Select one question";
 "circlepw_security_questions_required_mark" = "*";
@@ -70,3 +71,12 @@
 "circlepw_recover_pincode_subhead" = "Please enter the answer of the security questions provided below.";
 "circlepw_recover_pincode_answer_input_header" = "Enter your answer here";
 "circlepw_recover_pincode_answer_input_placeholder" = "Type your answer here";
+
+// [Page] BiometricsPrompt
+"circlepw_pin_biometrics_allow_title" = "Allow Biometrics for Web3 Access";
+"circlepw_pin_biometrics_allow_subtitle" = "Elevate Your Experience with Effortless Biometrics";
+"circlepw_pin_biometrics_failed_title" = "Failed Biometrics for Web3 Access";
+"circlepw_pin_biometrics_update_title" = "Update Biometrics for Web3 Access";
+"circlepw_pin_biometrics_update_subtitle" = "Please update your biometrics";
+"circlepw_pin_biometrics_disable" = "Don't ask me again";
+"circlepw_pin_touch_id_dialog_subtitle" = "Using Touch ID protect PIN";
