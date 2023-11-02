@@ -28,15 +28,28 @@ class WalletSdkAdapter {
         WalletSdk.shared.setDelegate(self)
     }
 
-    func updateEndPoint(_ endPoint: String, appId: String) {
+    @discardableResult
+    func updateEndPoint(_ endPoint: String, appId: String, biometrics: Bool = false) -> String? {
         let _appId = appId.trimmingCharacters(in: .whitespacesAndNewlines)
-        let configuration = WalletSdk.Configuration(endPoint: endPoint, appId: _appId)
+        let settings: WalletSdk.SettingsManagement = .init(enableBiometricsPin: biometrics)
+        let configuration = WalletSdk.Configuration(endPoint: endPoint, appId: _appId, settingsManagement: settings)
 
         do {
             try WalletSdk.shared.setConfiguration(configuration)
             print("Configuration Success")
+            return nil
         } catch {
+            let configurationErrorString: String
 
+            if let apiError = error as? ApiError {
+                print(apiError)
+                configurationErrorString = apiError.displayString
+            } else {
+                print(error.localizedDescription)
+                configurationErrorString = error.localizedDescription
+            }
+
+            return configurationErrorString
         }
     }
 }
@@ -78,7 +91,10 @@ extension WalletSdkAdapter: WalletSdkLayoutProvider {
             .dropdownArrow: UIImage(named: "ic_trailing_down")!,
             .errorInfo: UIImage(named: "ic_warning_alt")!,
             .securityIntroMain: UIImage(named: "img_security_intro")!,
-            .securityConfirmMain: UIImage(named: "img_confirmation")!
+            .securityConfirmMain: UIImage(named: "img_confirmation")!,
+            .biometricsAllowMain: UIImage(named: "ic_biometrics")!,
+            .hidePin: UIImage(named: "eye_closed")!,
+            .showPin: UIImage(named: "eye_open")!
         ]
 
         let remote: [ImageStore.Img: URL] = [:]
@@ -150,7 +166,7 @@ extension WalletSdkAdapter: ErrorMessenger {
 
         return nil
 
-        // MARK: Sample -  Error message customization
+        // MARK: Sample - Error message customization
 //        switch code {
 //        case .hintsMatchAnswers:
 //            return "Your custom error message."

@@ -25,26 +25,35 @@ struct ContentView: View {
     @State var userToken = ""
     @State var encryptionKey = ""
     @State var challengeId = ""
+    @State var enableBiometrics = false
 
     @State var showToast = false
     @State var toastMessage: String?
     @State var toastConfig: Toast.Config = .init()
 
-    var body: some View {
-        VStack {
-            List {
-                titleText
-                sectionEndPoint
-                sectionInputField("App ID", binding: $appId)
-                sectionInputField("User Token", binding: $userToken)
-                sectionInputField("Encryption Key", binding: $encryptionKey)
-                sectionInputField("Challenge ID", binding: $challengeId)
-                sectionExecuteButton
+    @State var path = NavigationPath()
 
-                Spacer()
-//                TestButtons
+    var body: some View {
+        NavigationStack(path: $path) {
+            VStack {
+                List {
+                    titleText
+                    sectionEndPoint
+                    sectionInputField("App ID", binding: $appId)
+                    sectionInputField("User Token", binding: $userToken)
+                    sectionInputField("Encryption Key", binding: $encryptionKey)
+                    sectionInputField("Challenge ID", binding: $challengeId)
+                    sectionToggle("Biometrics", binding: $enableBiometrics)
+                    sectionButtons
+
+//                    TestButtons
+                }
+                .listStyle(InsetGroupedListStyle())
+                versionText
             }
-            versionText
+            .navigationDestination(for: CircleProgrammableWalletSDK.ExecuteCompletionStruct.self) { executeResult in
+                ChallengeResultView(executeResult: executeResult, path: $path)
+            }
         }
         .scrollContentBackground(.hidden)
         .onAppear {
@@ -55,8 +64,15 @@ struct ContentView: View {
             }
         }
         .onChange(of: appId) { newValue in
-            self.adapter.updateEndPoint(endPoint, appId: newValue)
+            if let errStr = self.adapter.updateEndPoint(endPoint, appId: newValue, biometrics: enableBiometrics) {
+                showToast(.failure, message: "Error: " + errStr)
+            }
             self.adapter.storedAppId = newValue
+        }
+        .onChange(of: enableBiometrics) { newValue in
+            if let errStr = self.adapter.updateEndPoint(endPoint, appId: appId, biometrics: newValue) {
+                showToast(.failure, message: "Error: " + errStr)
+            }
         }
         .toast(message: toastMessage ?? "",
                isShowing: $showToast,
@@ -88,7 +104,26 @@ struct ContentView: View {
         }
     }
 
-    var sectionExecuteButton: some View {
+    func sectionToggle(_ title: String, binding: Binding<Bool>) -> some View {
+        Section {
+            Toggle(isOn: binding) {
+                HStack {
+                    Text(title)
+                    Image(systemName: "faceid")
+                }
+            }
+        }
+    }
+
+    var sectionButtons: some View {
+        Section {
+            executeButton
+            setBiometricsButton
+            Spacer()
+        }
+    }
+
+    var executeButton: some View {
         Button {
             guard !userToken.isEmpty else { showToast(.general, message: "User Token is Empty"); return }
             guard !encryptionKey.isEmpty else { showToast(.general, message: "Encryption Key is Empty"); return }
@@ -101,6 +136,28 @@ struct ContentView: View {
         }
         .buttonStyle(.borderedProminent)
         .listRowSeparator(.hidden)
+    }
+
+    var setBiometricsButton: some View {
+        Button {
+            biometricsPIN(userToken: userToken, encryptionKey: encryptionKey)
+        } label: {
+            Text("Set Biometrics")
+                .frame(maxWidth: .infinity)
+        }
+        .buttonStyle(.borderedProminent)
+        .listRowSeparator(.hidden)
+        .padding([.top], 8)
+    }
+}
+
+extension CircleProgrammableWalletSDK.ExecuteCompletionStruct: Hashable {
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(challenges)
+    }
+
+    public static func == (lhs: CircleProgrammableWalletSDK.ExecuteCompletionStruct, rhs: CircleProgrammableWalletSDK.ExecuteCompletionStruct) -> Bool {
+        return lhs.challenges.first == rhs.challenges.first
     }
 }
 
@@ -127,9 +184,47 @@ extension ContentView {
     }
 
     func executeChallenge(userToken: String, encryptionKey: String, challengeId: String) {
+        var showChallengeResult = true
+
         WalletSdk.shared.execute(userToken: userToken,
                                  encryptionKey: encryptionKey,
                                  challengeIds: [challengeId]) { response in
+            switch response.result {
+            case .success(let result):
+                let challengeStatus = result.status.rawValue
+                let challeangeType = result.resultType.rawValue
+                let warningType = response.onWarning?.warningType
+                let warningString = warningType != nil ?
+                " (\(warningType!))" : ""
+                showToast(.success, message: "\(challeangeType) - \(challengeStatus)\(warningString)")
+
+                response.onErrorController?.dismiss(animated: true)
+
+            case .failure(let error):
+                showToast(.failure, message: "Error: " + error.displayString)
+                errorHandler(apiError: error, onErrorController: response.onErrorController)
+
+                if error.errorCode == .userCanceled {
+                    showChallengeResult = false
+                }
+            }
+
+            if let onWarning = response.onWarning {
+                print(onWarning)
+            }
+
+            if showChallengeResult {
+                path.append(response)
+            }
+        }
+    }
+
+    func biometricsPIN(userToken: String, encryptionKey: String) {
+        guard !userToken.isEmpty else { showToast(.general, message: "User Token is Empty"); return }
+        guard !encryptionKey.isEmpty else { showToast(.general, message: "Encryption Key is Empty"); return }
+
+        WalletSdk.shared.setBiometricsPin(userToken: userToken, encryptionKey: encryptionKey) {
+            response in
             switch response.result {
             case .success(let result):
                 let challengeStatus = result.status.rawValue
@@ -145,7 +240,16 @@ extension ContentView {
 
     func errorHandler(apiError: ApiError, onErrorController: UINavigationController?) {
         switch apiError.errorCode {
-        case .userHasSetPin:
+        case .userHasSetPin,
+             .biometricsSettingNotEnabled,
+             .deviceNotSupportBiometrics,
+             .biometricsKeyPermanentlyInvalidated,
+             .biometricsUserSkip,
+             .biometricsUserDisableForPin,
+             .biometricsUserLockout,
+             .biometricsUserLockoutPermanent,
+             .biometricsUserNotAllowPermission,
+             .biometricsInternalError:
             onErrorController?.dismiss(animated: true)
         default:
             break
@@ -158,6 +262,9 @@ extension ContentView {
             Button("Change PIN", action: changePIN)
             Button("Restore PIN", action: restorePIN)
             Button("Enter PIN", action: enterPIN)
+            Button("Set Biometrics PIN") {
+                biometricsPIN(userToken: userToken, encryptionKey: encryptionKey)
+            }
 
         } header: {
             Text("UI Customization Entry")
