@@ -12,8 +12,8 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-source 'https://cdn.cocoapods.org/'
 source 'https://github.com/circlefin/w3s-ios-sdk.git'
+source 'https://cdn.cocoapods.org/'
 platform :ios, '13.0'
 
 target 'w3s-ios-sample-app-wallets' do
