@@ -26,6 +26,7 @@ class WalletSdkAdapter {
         WalletSdk.shared.setLayoutProvider(self)
         WalletSdk.shared.setErrorMessenger(self)
         WalletSdk.shared.setDelegate(self)
+        WalletSdk.shared.customUserAgent = "IOS-SAMPLE-APP-WALLETS"
     }
 
     @discardableResult
