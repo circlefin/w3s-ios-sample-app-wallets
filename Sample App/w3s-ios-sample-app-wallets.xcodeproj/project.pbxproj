@@ -137,6 +137,7 @@
 				B3BEDEC82A50648300861533 /* Frameworks */,
 				B3BEDEC92A50648300861533 /* Resources */,
 				A6C197F8D8C91907C988C29B /* [CP] Copy Pods Resources */,
+				C3B5F9D29A61E0976705C11C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -210,6 +211,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-w3s-ios-sample-app-wallets/Pods-w3s-ios-sample-app-wallets-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C3B5F9D29A61E0976705C11C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-w3s-ios-sample-app-wallets/Pods-w3s-ios-sample-app-wallets-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-w3s-ios-sample-app-wallets/Pods-w3s-ios-sample-app-wallets-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-w3s-ios-sample-app-wallets/Pods-w3s-ios-sample-app-wallets-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C716E2BB3000003F5BD803E1 /* [CP] Check Pods Manifest.lock */ = {
