@@ -1,0 +1,30 @@
+name: ios-sdk-ci
+
+on:
+  pull_request:
+    branches: ["master"]
+  push:
+    branches: ["master"]
+
+jobs:
+  build:
+    runs-on: macOS
+
+    steps:
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-region: us-east-1
+        role-to-assume: arn:aws:iam::514563129364:role/circlefin-ops-github-actions
+        role-duration-seconds: 1200
+
+    - name: Checkout ios-sdk repository
+      uses: actions/checkout@v3
+
+    - name: Build iOS SDK
+      run: |
+        cd 'Sample App'
+        xcodebuild clean
+        pod install
+
+        xcodebuild build-for-testing -workspace w3s-ios-sample-app-wallets.xcworkspace -scheme "w3s-ios-sample-app-wallets" -configuration "Debug" -destination "platform=iOS Simulator,name=iPhone 8 Plus,OS=latest" 
