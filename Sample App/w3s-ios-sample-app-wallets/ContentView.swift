@@ -1,4 +1,6 @@
-// Copyright (c) 2023, Circle Technologies, LLC. All rights reserved.
+// Copyright (c) 2024, Circle Internet Financial, LTD. All rights reserved.
+//
+// SPDX-License-Identifier: Apache-2.0
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -25,13 +27,16 @@ struct ContentView: View {
     @State var userToken = ""
     @State var encryptionKey = ""
     @State var challengeId = ""
+    @State var pinCodeDeviceShare = ""
     @State var enableBiometrics = false
+    @State var disableConfirmationUI = false
 
     @State var showToast = false
     @State var toastMessage: String?
     @State var toastConfig: Toast.Config = .init()
 
     @State var path = NavigationPath()
+    @State var deviceID: String = ""
 
     var body: some View {
         NavigationStack(path: $path) {
@@ -43,7 +48,8 @@ struct ContentView: View {
                     sectionInputField("User Token", binding: $userToken)
                     sectionInputField("Encryption Key", binding: $encryptionKey)
                     sectionInputField("Challenge ID", binding: $challengeId)
-                    sectionToggle("Biometrics", binding: $enableBiometrics)
+                    sectionInputField("PinCode Device Share", binding: $pinCodeDeviceShare)
+                    sectionToggles
                     sectionButtons
 
 //                    TestButtons
@@ -54,6 +60,17 @@ struct ContentView: View {
             .navigationDestination(for: CircleProgrammableWalletSDK.ExecuteCompletionStruct.self) { executeResult in
                 ChallengeResultView(executeResult: executeResult, path: $path)
             }
+            .toolbar {
+                if addSSOSignInView {
+                    ToolbarItem {
+                        NavigationLink {
+                            SSOSignInView(deviceID: $deviceID)
+                        } label: {
+                            Text("SSO")
+                        }
+                    }
+                }
+            }
         }
         .scrollContentBackground(.hidden)
         .onAppear {
@@ -62,6 +79,8 @@ struct ContentView: View {
             if let storedAppId = self.adapter.storedAppId, !storedAppId.isEmpty {
                 self.appId = storedAppId
             }
+
+            deviceID = WalletSdk.shared.getDeviceId()
         }
         .onChange(of: appId) { newValue in
             if let errStr = self.adapter.updateEndPoint(endPoint, appId: newValue, biometrics: enableBiometrics) {
@@ -70,7 +89,12 @@ struct ContentView: View {
             self.adapter.storedAppId = newValue
         }
         .onChange(of: enableBiometrics) { newValue in
-            if let errStr = self.adapter.updateEndPoint(endPoint, appId: appId, biometrics: newValue) {
+            if let errStr = self.adapter.updateEndPoint(endPoint, appId: appId, biometrics: newValue, disableUI: disableConfirmationUI) {
+                showToast(.failure, message: "Error: " + errStr)
+            }
+        }
+        .onChange(of: disableConfirmationUI) { newValue in
+            if let errStr = self.adapter.updateEndPoint(endPoint, appId: appId, biometrics: enableBiometrics, disableUI: newValue) {
                 showToast(.failure, message: "Error: " + errStr)
             }
         }
@@ -104,15 +128,25 @@ struct ContentView: View {
         }
     }
 
-    func sectionToggle(_ title: String, binding: Binding<Bool>) -> some View {
+    var sectionToggles: some View {
         Section {
-            Toggle(isOn: binding) {
-                HStack {
-                    Text(title)
-                    Image(systemName: "faceid")
-                }
+            addToggle(ToggleType.biometrics, binding: $enableBiometrics)
+            addToggle(ToggleType.confirmUI, binding: $disableConfirmationUI)
+        }
+        .listRowSeparator(.hidden)
+        .listRowInsets(.none)
+        .padding(.all, .zero)
+    }
+
+    func addToggle(_ type: ToggleType, binding: Binding<Bool>) -> some View {
+        Toggle(isOn: binding) {
+            HStack {
+                Text(type.desc)
+                type.icon
             }
         }
+        .listRowInsets(.none)
+        .padding(.all, .zero)
     }
 
     var sectionButtons: some View {
@@ -128,7 +162,7 @@ struct ContentView: View {
             guard !userToken.isEmpty else { showToast(.general, message: "User Token is Empty"); return }
             guard !encryptionKey.isEmpty else { showToast(.general, message: "Encryption Key is Empty"); return }
             guard !challengeId.isEmpty else { showToast(.general, message: "Challenge ID is Empty"); return }
-            executeChallenge(userToken: userToken, encryptionKey: encryptionKey, challengeId: challengeId)
+            executeChallenge(userToken: userToken, encryptionKey: encryptionKey, challengeId: challengeId, pinCodeDeviceShare: pinCodeDeviceShare)
 
         } label: {
             Text("Execute")
@@ -182,39 +216,20 @@ extension ContentView {
             toastConfig = Toast.Config(backgroundColor: .pink, duration: 10.0)
         }
     }
-
-    func executeChallenge(userToken: String, encryptionKey: String, challengeId: String) {
-        var showChallengeResult = true
-
-        WalletSdk.shared.execute(userToken: userToken,
-                                 encryptionKey: encryptionKey,
-                                 challengeIds: [challengeId]) { response in
-            switch response.result {
-            case .success(let result):
-                let challengeStatus = result.status.rawValue
-                let challeangeType = result.resultType.rawValue
-                let warningType = response.onWarning?.warningType
-                let warningString = warningType != nil ?
-                " (\(warningType!))" : ""
-                showToast(.success, message: "\(challeangeType) - \(challengeStatus)\(warningString)")
-
-                response.onErrorController?.dismiss(animated: true)
-
-            case .failure(let error):
-                showToast(.failure, message: "Error: " + error.displayString)
-                errorHandler(apiError: error, onErrorController: response.onErrorController)
-
-                if error.errorCode == .userCanceled {
-                    showChallengeResult = false
-                }
+    
+    func executeChallenge(userToken: String, encryptionKey: String, challengeId: String, pinCodeDeviceShare: String) {
+        if !pinCodeDeviceShare.isEmpty {
+            WalletSdk.shared.executeWithUserSecret(userToken: userToken,
+                                                   encryptionKey: encryptionKey,
+                                                   userSecret: pinCodeDeviceShare,
+                                                   challengeIds: [challengeId]) { response in
+                executeResponseHandler(response)
             }
-
-            if let onWarning = response.onWarning {
-                print(onWarning)
-            }
-
-            if showChallengeResult {
-                path.append(response)
+        } else {
+            WalletSdk.shared.execute(userToken: userToken,
+                                     encryptionKey: encryptionKey,
+                                     challengeIds: [challengeId]) { response in
+                executeResponseHandler(response)
             }
         }
     }
@@ -235,6 +250,38 @@ extension ContentView {
                 showToast(.failure, message: "Error: " + error.displayString)
                 errorHandler(apiError: error, onErrorController: response.onErrorController)
             }
+        }
+    }
+
+    func executeResponseHandler(_ response: ExecuteCompletionStruct) {
+        var showChallengeResult = true
+
+        switch response.result {
+        case .success(let result):
+            let challengeStatus = result.status.rawValue
+            let challeangeType = result.resultType.rawValue
+            let warningType = response.onWarning?.warningType
+            let warningString = warningType != nil ?
+            " (\(warningType!))" : ""
+            showToast(.success, message: "\(challeangeType) - \(challengeStatus)\(warningString)")
+
+            response.onErrorController?.dismiss(animated: true)
+
+        case .failure(let error):
+            showToast(.failure, message: "Error: " + error.displayString)
+            errorHandler(apiError: error, onErrorController: response.onErrorController)
+
+            if error.errorCode == .userCanceled {
+                showChallengeResult = false
+            }
+        }
+
+        if let onWarning = response.onWarning {
+            print(onWarning)
+        }
+
+        if showChallengeResult {
+            path.append(response)
         }
     }
 
