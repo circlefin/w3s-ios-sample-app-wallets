@@ -57,3 +57,17 @@ $ brew
     ![image](readme_images/screenshot_4.png)
     - Set the `endPoint` in the `ContentView.swift`
     - Set the `appId` in the `ContentView.swift`
+
+5. (Optional) SSO configs setup
+	- If you want to use SSO for test , please change the flag `addSSOSignInView` value to *true* in the `w3s_ios_sample_app_walletsApp.swift`
+	![image](readme_images/screenshot_5.png)
+
+	Just set up the SSO you want to use below:
+	 - [Apple] Update the App's Bundle Identifier to yours
+	 ![image](readme_images/screenshot_6.png)
+	 - [Google] Update `Info.plist` file to add your OAuth client ID and a custom URL scheme based on the reversed client ID.
+	Reference: [Get started with Google Sign-In for iOS](https://developers.google.com/identity/sign-in/ios/start-integrating#configure_app_project)
+	 ![image](readme_images/screenshot_7.png)
+	 - [Facebook] Replace the *APP-ID*, *CLIENT-TOKEN* and *APP-NAME* of `Info.plist` with your Facebook application configurations. 
+	Reference: [Facebook Login for iOS - Quickstart](https://developers.facebook.com/docs/facebook-login/ios/#4--configure-your-project)
+	 ![image](readme_images/screenshot_8.png)
