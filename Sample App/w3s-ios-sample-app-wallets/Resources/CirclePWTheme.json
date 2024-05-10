@@ -34,6 +34,7 @@
         "pin_dot_base_border": "#707070",
         "pin_dot_activated": "#0073C3",
         "pin_dot_focused": "#0073C3",
+        "pin_digit_activated": "#ff6699",
 
         "input_border": "#E8E8E8",
         "input_border_focused": "#46B5FF",

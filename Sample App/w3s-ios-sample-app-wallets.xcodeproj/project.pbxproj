@@ -17,6 +17,12 @@
 		B3BEDEDF2A5064E800861533 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BEDEDD2A5064E800861533 /* ContentView.swift */; };
 		B3BEDEE62A50651700861533 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BEDEE32A50651700861533 /* UserDefault.swift */; };
 		B3BEDEE82A50651700861533 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BEDEE52A50651700861533 /* Toast.swift */; };
+		BA285C102B625BD600F317EF /* ToggleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA285C0F2B625BD600F317EF /* ToggleType.swift */; };
+		BADB71432B4E7E43000AA7ED /* GoogleAuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADB71422B4E7E43000AA7ED /* GoogleAuthViewModel.swift */; };
+		BADB71452B4E90AF000AA7ED /* SSOSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADB71442B4E90AF000AA7ED /* SSOSignInView.swift */; };
+		BADB71472B4FD11B000AA7ED /* AppleAuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADB71462B4FD11B000AA7ED /* AppleAuthViewModel.swift */; };
+		BADB714A2B54DDF7000AA7ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADB71492B54DDF7000AA7ED /* AppDelegate.swift */; };
+		BADB714C2B54E33B000AA7ED /* FacebookAuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADB714B2B54E33B000AA7ED /* FacebookAuthViewModel.swift */; };
 		BAE182562AF36AD3004D6494 /* ChallengeResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE182552AF36AD3004D6494 /* ChallengeResultView.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +38,14 @@
 		B3BEDEDD2A5064E800861533 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B3BEDEE32A50651700861533 /* UserDefault.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		B3BEDEE52A50651700861533 /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		BA285C0F2B625BD600F317EF /* ToggleType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToggleType.swift; sourceTree = "<group>"; };
+		BADB713D2B4E7567000AA7ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BADB71422B4E7E43000AA7ED /* GoogleAuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAuthViewModel.swift; sourceTree = "<group>"; };
+		BADB71442B4E90AF000AA7ED /* SSOSignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSOSignInView.swift; sourceTree = "<group>"; };
+		BADB71462B4FD11B000AA7ED /* AppleAuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleAuthViewModel.swift; sourceTree = "<group>"; };
+		BADB71482B4FD2A4000AA7ED /* w3s-ios-sample-app-wallets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "w3s-ios-sample-app-wallets.entitlements"; sourceTree = "<group>"; };
+		BADB71492B54DDF7000AA7ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		BADB714B2B54E33B000AA7ED /* FacebookAuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookAuthViewModel.swift; sourceTree = "<group>"; };
 		BAE182552AF36AD3004D6494 /* ChallengeResultView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeResultView.swift; sourceTree = "<group>"; };
 		ED19DFB9C55BB7A8A6609DD9 /* Pods-w3s-ios-sample-app-wallets.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-w3s-ios-sample-app-wallets.release.xcconfig"; path = "Target Support Files/Pods-w3s-ios-sample-app-wallets/Pods-w3s-ios-sample-app-wallets.release.xcconfig"; sourceTree = "<group>"; };
 		F095FAC15E5990E5728EEDA8 /* Pods_w3s_ios_sample_app_wallets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_w3s_ios_sample_app_wallets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,11 +101,15 @@
 		B3BEDECD2A50648300861533 /* w3s-ios-sample-app-wallets */ = {
 			isa = PBXGroup;
 			children = (
+				BADB71482B4FD2A4000AA7ED /* w3s-ios-sample-app-wallets.entitlements */,
+				BADB71412B4E7E23000AA7ED /* ViewModels */,
 				B3CD172C2A5DA09D000664EA /* Resources */,
+				BADB71492B54DDF7000AA7ED /* AppDelegate.swift */,
 				B3BEDECE2A50648300861533 /* w3s_ios_sample_app_walletsApp.swift */,
 				B3BEDEDD2A5064E800861533 /* ContentView.swift */,
 				BAE182552AF36AD3004D6494 /* ChallengeResultView.swift */,
 				B3BEDEDC2A5064E800861533 /* WalletSdkAdapter.swift */,
+				BADB71442B4E90AF000AA7ED /* SSOSignInView.swift */,
 				B3BEDEE22A50651700861533 /* Helpers */,
 				B3BEDED42A50648400861533 /* Preview Content */,
 			);
@@ -111,6 +129,7 @@
 			children = (
 				B3BEDEE32A50651700861533 /* UserDefault.swift */,
 				B3BEDEE52A50651700861533 /* Toast.swift */,
+				BA285C0F2B625BD600F317EF /* ToggleType.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -121,8 +140,19 @@
 				B3A66CE62A5B03F200FB0B2E /* Assets.xcassets */,
 				B369BA8F2A8BF600007DEC09 /* CirclePWLocalizable.strings */,
 				B369BA8E2A8BF600007DEC09 /* CirclePWTheme.json */,
+				BADB713D2B4E7567000AA7ED /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		BADB71412B4E7E23000AA7ED /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				BADB71462B4FD11B000AA7ED /* AppleAuthViewModel.swift */,
+				BADB71422B4E7E43000AA7ED /* GoogleAuthViewModel.swift */,
+				BADB714B2B54E33B000AA7ED /* FacebookAuthViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,6 +167,7 @@
 				B3BEDEC82A50648300861533 /* Frameworks */,
 				B3BEDEC92A50648300861533 /* Resources */,
 				A6C197F8D8C91907C988C29B /* [CP] Copy Pods Resources */,
+				402E39960CFD6974237CA94E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -195,6 +226,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		402E39960CFD6974237CA94E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-w3s-ios-sample-app-wallets/Pods-w3s-ios-sample-app-wallets-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-w3s-ios-sample-app-wallets/Pods-w3s-ios-sample-app-wallets-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-w3s-ios-sample-app-wallets/Pods-w3s-ios-sample-app-wallets-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		A6C197F8D8C91907C988C29B /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -241,12 +289,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BADB71472B4FD11B000AA7ED /* AppleAuthViewModel.swift in Sources */,
+				BADB714C2B54E33B000AA7ED /* FacebookAuthViewModel.swift in Sources */,
 				B3BEDEE82A50651700861533 /* Toast.swift in Sources */,
 				B3BEDEE62A50651700861533 /* UserDefault.swift in Sources */,
 				B3BEDECF2A50648300861533 /* w3s_ios_sample_app_walletsApp.swift in Sources */,
 				B3BEDEDE2A5064E800861533 /* WalletSdkAdapter.swift in Sources */,
+				BADB71432B4E7E43000AA7ED /* GoogleAuthViewModel.swift in Sources */,
 				B3BEDEDF2A5064E800861533 /* ContentView.swift in Sources */,
+				BADB71452B4E90AF000AA7ED /* SSOSignInView.swift in Sources */,
+				BADB714A2B54DDF7000AA7ED /* AppDelegate.swift in Sources */,
 				BAE182562AF36AD3004D6494 /* ChallengeResultView.swift in Sources */,
+				BA285C102B625BD600F317EF /* ToggleType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,12 +427,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "w3s-ios-sample-app-wallets/w3s-ios-sample-app-wallets.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"w3s-ios-sample-app-wallets/Preview Content\"";
 				DEVELOPMENT_TEAM = 6R3336A52L;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "w3s-ios-sample-app-wallets/Resources/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "w3s-ios-sample";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Enable Biometrics PIN";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -406,12 +462,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "w3s-ios-sample-app-wallets/w3s-ios-sample-app-wallets.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"w3s-ios-sample-app-wallets/Preview Content\"";
 				DEVELOPMENT_TEAM = 6R3336A52L;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "w3s-ios-sample-app-wallets/Resources/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "w3s-ios-sample";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Enable Biometrics PIN";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

@@ -16,19 +16,25 @@
 
 import SwiftUI
 
-let addSSOSignInView = false // Add SSO sign in view for test
+enum ToggleType {
+    case biometrics
+    case confirmUI
 
-@main
-struct w3s_ios_sample_app_walletsApp: App {
+    var desc: String {
+        switch self {
+        case .biometrics:
+            return "Biometrics"
+        case .confirmUI:
+            return "Disable Confirmation UI"
+        }
+    }
 
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-                .environmentObject(AppleAuthViewModel())
-                .environmentObject(GoogleAuthViewModel())
-                .environmentObject(FacebookAuthViewModel())
+    var icon: Image {
+        switch self {
+        case .biometrics:
+            return Image(systemName: "faceid")
+        case .confirmUI:
+            return Image(systemName: "person.circle")
         }
     }
 }

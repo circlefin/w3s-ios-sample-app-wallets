@@ -1,4 +1,6 @@
-// Copyright (c) 2023, Circle Technologies, LLC. All rights reserved.
+// Copyright (c) 2024, Circle Internet Financial, LTD. All rights reserved.
+//
+// SPDX-License-Identifier: Apache-2.0
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -26,13 +28,13 @@ class WalletSdkAdapter {
         WalletSdk.shared.setLayoutProvider(self)
         WalletSdk.shared.setErrorMessenger(self)
         WalletSdk.shared.setDelegate(self)
-        WalletSdk.shared.customUserAgent = "IOS-SAMPLE-APP-WALLETS"
     }
 
     @discardableResult
-    func updateEndPoint(_ endPoint: String, appId: String, biometrics: Bool = false) -> String? {
+    func updateEndPoint(_ endPoint: String, appId: String,
+                        biometrics: Bool = false, disableUI: Bool = false) -> String? {
         let _appId = appId.trimmingCharacters(in: .whitespacesAndNewlines)
-        let settings: WalletSdk.SettingsManagement = .init(enableBiometricsPin: biometrics)
+        let settings: WalletSdk.SettingsManagement = .init(enableBiometricsPin: biometrics, disableConfirmationUI: disableUI)
         let configuration = WalletSdk.Configuration(endPoint: endPoint, appId: _appId, settingsManagement: settings)
 
         do {
