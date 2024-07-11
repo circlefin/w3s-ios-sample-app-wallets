@@ -55,12 +55,10 @@ $ brew
 4. (Optional) Setup configs programmatically
 
     ![image](readme_images/screenshot_4.png)
-    - Set the `endPoint` in the `ContentView.swift`
-    - Set the `appId` in the `ContentView.swift`
+    - Set the `endPoint` in the `AuthScreenView.swift`
+    - Set the `appId` in the `AuthScreenView.swift`
 
 5. (Optional) SSO configs setup
-	- If you want to use SSO for test , please change the flag `addSSOSignInView` value to *true* in the `w3s_ios_sample_app_walletsApp.swift`
-	![image](readme_images/screenshot_5.png)
 
 	Just set up the SSO you want to use below:
 	 - [Apple] Update the App's Bundle Identifier to yours
