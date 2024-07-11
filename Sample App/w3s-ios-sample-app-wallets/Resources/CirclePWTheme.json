@@ -15,7 +15,7 @@
         "background": "#FFFFFF",
         "divider": "#F0EFEF",
         "success": "#0B9C4A",
-        "error": "#F55538",
+        "error": "#BC0016",
         "error_background": "#FDF2F2",
 
         "text_main": "#1A1A1A",
@@ -29,12 +29,15 @@
         "text_action_pressed": "#B3136FD8",
         "text_prompt": "#29233B",
         "text_prompt2": "#6B6580",
+        "text_exchange": "#979797",
+        "text_interactive": "#0073C3",
+        "text_sign_url": "#8E8E93",
 
         "pin_dot_base": "#FFFFFF",
         "pin_dot_base_border": "#707070",
         "pin_dot_activated": "#0073C3",
         "pin_dot_focused": "#0073C3",
-        "pin_digit_activated": "#ff6699",
+        "pin_digit_activated": "#3D3D3D",
 
         "input_border": "#E8E8E8",
         "input_border_focused": "#46B5FF",
@@ -61,6 +64,11 @@
         "recover_pin_hint": "#0073C3",
 
         "security_confirm_main_bg": "#E9EEFE",
+
+        "tip_text": "#FFFFFF",
+        "tip_background": "#29233B",
+
+        "interactive_background": "#F9F9FC",
 
         "title_gradients": ["#0073C3", "#0073C3"],
     }
