@@ -16,7 +16,18 @@
 
 import SwiftUI
 
+struct ToastInfo {
+    let type: Toast.ToastType
+    let message: String
+}
+
 struct Toast: ViewModifier {
+
+    enum ToastType {
+        case general
+        case success
+        case failure
+    }
 
     static let short: TimeInterval = 2
     static let long: TimeInterval = 3.5
@@ -36,18 +47,44 @@ struct Toast: ViewModifier {
         VStack {
             Spacer()
             if isShowing {
-                Group {
-                    Text(message)
-                        .multilineTextAlignment(.center)
-                        .foregroundColor(config.textColor)
-                        .font(config.font)
-                        .padding(8)
+                HStack(alignment: .center, spacing: 12) {
+                    HStack(alignment: .top, spacing: 8) {
+                        if let statusImage = config.statusImage {
+                            statusImage
+                                .resizable()
+                                .frame(width: 20, height: 20)
+                        }
+                        Text(message)
+                            .multilineTextAlignment(.leading)
+                            .foregroundColor(config.textColor)
+                            .font(config.font)
+                    }
+                    .frame(alignment: .topLeading)
+                    if let closeImage = config.closeImage {
+                        Button {
+                            isShowing = false
+                        } label: {
+                            closeImage
+                                .resizable()
+                                .frame(width: 20, height: 20)
+                                .padding(4)
+                        }
+                    }
                 }
+                .padding(.horizontal, 16)
+                .padding(.vertical, 12)
                 .background(config.backgroundColor)
                 .cornerRadius(8)
                 .onTapGesture {
-                    isShowing = false
+                    if config.closeImage == nil {
+                        isShowing = false
+                    }
                 }
+                .overlay(
+                    RoundedRectangle(cornerRadius: 8)
+                        .inset(by: 0.5)
+                        .stroke(config.borderColor ?? .clear, lineWidth: 1)
+                )
                 .onAppear {
                     DispatchQueue.main.asyncAfter(deadline: .now() + config.duration) {
                         isShowing = false
@@ -65,22 +102,31 @@ struct Toast: ViewModifier {
         let textColor: Color
         let font: Font
         let backgroundColor: Color
+        let borderColor: Color?
         let duration: TimeInterval
         let transition: AnyTransition
         let animation: Animation
+        let statusImage: Image?
+        let closeImage: Image?
 
         init(textColor: Color = .white,
              font: Font = .system(size: 14),
              backgroundColor: Color = .black.opacity(0.588),
+             borderColor: Color? = nil,
              duration: TimeInterval = Toast.short,
              transition: AnyTransition = .opacity,
-             animation: Animation = .linear(duration: 0.3)) {
+             animation: Animation = .linear(duration: 0.3),
+             statusImage: Image? = nil,
+             closeImage: Image? = nil) {
             self.textColor = textColor
             self.font = font
             self.backgroundColor = backgroundColor
+            self.borderColor = borderColor
             self.duration = duration
             self.transition = transition
             self.animation = animation
+            self.statusImage = statusImage
+            self.closeImage = closeImage
         }
     }
 }

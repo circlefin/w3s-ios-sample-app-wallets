@@ -21,17 +21,12 @@ import FBSDKLoginKit
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        return addSSOSignInView ?
-        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions) : true
+        return ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 
     func application(_ app: UIApplication,
                      open url: URL,
                      options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        guard addSSOSignInView else {
-            return false
-        }
-
         if GIDSignIn.sharedInstance.handle(url) {
             return true
         }

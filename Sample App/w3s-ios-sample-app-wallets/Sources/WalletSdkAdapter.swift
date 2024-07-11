@@ -32,9 +32,9 @@ class WalletSdkAdapter {
 
     @discardableResult
     func updateEndPoint(_ endPoint: String, appId: String,
-                        biometrics: Bool = false, disableUI: Bool = false) -> String? {
+                        biometrics: Bool = false) -> String? {
         let _appId = appId.trimmingCharacters(in: .whitespacesAndNewlines)
-        let settings: WalletSdk.SettingsManagement = .init(enableBiometricsPin: biometrics, disableConfirmationUI: disableUI)
+        let settings: WalletSdk.SettingsManagement = .init(enableBiometricsPin: biometrics)
         let configuration = WalletSdk.Configuration(endPoint: endPoint, appId: _appId, settingsManagement: settings)
 
         do {
@@ -97,7 +97,11 @@ extension WalletSdkAdapter: WalletSdkLayoutProvider {
             .securityConfirmMain: UIImage(named: "img_confirmation")!,
             .biometricsAllowMain: UIImage(named: "ic_biometrics")!,
             .hidePin: UIImage(named: "eye_closed")!,
-            .showPin: UIImage(named: "eye_open")!
+            .showPin: UIImage(named: "eye_open")!,
+            .showLessDetailArrow: UIImage(named: "chevron-up")!,
+            .showMoreDetailArrow: UIImage(named: "chevron-down")!,
+            .networkFeeTipIcon: UIImage(named: "hint")!,
+            .transactionTokenIcon: UIImage(named: "USDC")!,
         ]
 
         let remote: [ImageStore.Img: URL] = [:]
@@ -144,7 +148,7 @@ extension WalletSdkAdapter: WalletSdkDelegate {
     func walletSdk(willPresentController controller: UIViewController) {
         print("willPresentController: \(controller)")
 
-        // MARK: Sample - UI manipuation in run time
+        // MARK: Sample - UI manipulation in run time
 //        if let controller = controller as? NewPINCodeViewController {
 //            controller.titleLabel1.text = "Hello World"
 //            controller.titleLabel1.textColor = .blue
@@ -156,10 +160,30 @@ extension WalletSdkAdapter: WalletSdkDelegate {
 //            controller.imageBgView.backgroundColor = .blue
 //            controller.imageView.contentMode = .scaleAspectFill
 //        }
+
+        // MARK: Sample - Transaction UI (for social/email user) manipulation in run time
+        if let controller = controller as? TransactionRequestViewController {
+            controller.currencyLabel.text = "USDC"
+            controller.txFiatValueLabel.text = "≈$20 USD"
+            controller.fromLabel.text = "0x391...e4r43"
+            controller.toContractNameLabel.text = "uniswape.org"
+            controller.toContractURLLabel.text = "https://uniswape.org"
+            controller.feeLabel.text = "0.0002 ETH"
+            controller.feeFiatValueLabel.text = "USD 8.16"
+            controller.totalFiatValueLabel.text = "USD 28.16"
+        }
     }
 
     func walletSdk(controller: UIViewController, onForgetPINButtonSelected onSelect: Void) {
         print("onForgetPINButtonSelected")
+        NotificationCenter.default.post(name: NSNotification.Name("onForgetPIN"), object: nil)
+        controller.dismiss(animated: true)
+    }
+
+    func walletSdk(controller: UIViewController, onSendAgainButtonSelected onSelect: Void) {
+        print("onSendAgainButtonSelected")
+        NotificationCenter.default.post(name: NSNotification.Name("onSendAgain"), object: nil)
+        controller.dismiss(animated: true)
     }
 }
 

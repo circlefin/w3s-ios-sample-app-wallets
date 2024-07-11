@@ -14,21 +14,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import SwiftUI
+import Foundation
 
-let addSSOSignInView = false // Add SSO sign in view for test
-
-@main
-struct w3s_ios_sample_app_walletsApp: App {
-
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-                .environmentObject(AppleAuthViewModel())
-                .environmentObject(GoogleAuthViewModel())
-                .environmentObject(FacebookAuthViewModel())
-        }
-    }
+extension Notification.Name {
+    static let showToast = Notification.Name("showToast")
+    static let onForgetPIN = Notification.Name("onForgetPIN")
+    static let onSendAgain = Notification.Name("onSendAgain")
 }

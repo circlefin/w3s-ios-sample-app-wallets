@@ -27,10 +27,6 @@ target 'w3s-ios-sample-app-wallets' do
 
   pod 'CircleProgrammableWalletSDK'
 
-  # SSO SDK
-  pod 'GoogleSignIn'
-  pod 'FBSDKLoginKit'
-
 end
 
 post_install do |installer|
