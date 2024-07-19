@@ -58,9 +58,9 @@ $ brew
     - Set the `endPoint` in the `AuthScreenView.swift`
     - Set the `appId` in the `AuthScreenView.swift`
 
-5. (Optional) SSO configs setup
+5. (Optional) Auth configs setup
 
-	Just set up the SSO you want to use below:
+	Just set up the social login you want to use below:
 	 - [Apple] Update the App's Bundle Identifier to yours
 	 ![image](readme_images/screenshot_6.png)
 	 - [Google] Update `Info.plist` file to add your OAuth client ID and a custom URL scheme based on the reversed client ID.
