@@ -1,0 +1,14 @@
+name: AI PR
+
+on:
+  pull_request:
+    types: [ labeled ]
+
+jobs:
+  pr_review:
+    if: ${{ github.event.label.name == 'ai-pr-review' }}
+    uses: circlefin/github-shared-pipelines/.github/workflows/ai-pr-review.yaml@v1
+
+  pr_notes:
+    if: ${{ github.event.label.name == 'ai-pr-notes' }}
+    uses: circlefin/github-shared-pipelines/.github/workflows/ai-pr-notes.yaml@v1
