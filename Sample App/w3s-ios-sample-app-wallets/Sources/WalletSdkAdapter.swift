@@ -19,9 +19,6 @@ import CircleProgrammableWalletSDK
 
 class WalletSdkAdapter {
 
-    @UserDefault("storedAppId", defaultValue: nil)
-    var storedAppId: String?
-
     func initSDK(endPoint: String, appId: String) {
         self.updateEndPoint(endPoint, appId: appId)
 
