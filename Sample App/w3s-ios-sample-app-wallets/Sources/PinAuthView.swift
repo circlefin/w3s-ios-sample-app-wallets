@@ -49,15 +49,9 @@ struct PinAuthView: View {
                 if let errStr = self.adapter.updateEndPoint(endPoint, appId: appId) {
                     showToast(.failure, message: "Error: " + errStr)
                 }
-                self.adapter.storedAppId = appId
             }
             .onAppear {
                 self.adapter.initSDK(endPoint: endPoint, appId: appId)
-
-                if let storedAppId = self.adapter.storedAppId, !storedAppId.isEmpty {
-                    apiParameters.appId = storedAppId
-                }
-
                 setButtonsEnableStatus()
             }
             .onReceive(onForgetPINPub) { _ in
