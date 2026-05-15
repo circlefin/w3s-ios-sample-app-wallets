@@ -45,7 +45,6 @@ struct SocialAuthView: View {
                 if let errStr = self.adapter.updateEndPoint(endPoint, appId: appId) {
                     showToast(.failure, message: "Error: " + errStr)
                 }
-                self.adapter.storedAppId = appId
             }
             .onChange(of: userToken) {
                 if !userToken.isEmpty, !encryptionKey.isEmpty {
@@ -54,11 +53,6 @@ struct SocialAuthView: View {
             }
             .onAppear {
                 self.adapter.initSDK(endPoint: endPoint, appId: appId)
-
-                if let storedAppId = self.adapter.storedAppId, !storedAppId.isEmpty {
-                    apiParameters.appId = storedAppId
-                }
-
                 setButtonsEnableStatus()
             }
             .fullScreenCover(isPresented: $showExecuteView) {
