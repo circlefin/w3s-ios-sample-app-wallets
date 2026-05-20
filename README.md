@@ -1,6 +1,6 @@
 # w3s-ios-sample-app-wallets
 
-This is a sample project to integrate with [CircleProgrammableWalletSDK](https://github.com/circlefin/w3s-ios-sdk)
+This is a sample project to integrate with [CircleProgrammableWalletSDK](https://github.com/circlefin/w3s-ios-sdk).
 
 - Bookmark
   - [Requirements](#requirements)
@@ -17,9 +17,13 @@ Sign up for the Circle Developer account here: https://console.circle.com/signup
 
 Within the Circle Developer account, you can create and update API Keys, subscribe for activity notifications, view your API logs and more! Anyone can sign up for a Circle Developer account within minutes. All you need is your name, email and password!
 
-### Xcode 14.1+
+### Xcode 16.3+
 
 Install Apple’s Xcode development software: [Xcode in the Apple App Store](https://apps.apple.com/tw/app/xcode/id497799835?mt=12).
+
+### iOS 15.1+
+
+The SDK integration requires iOS 15.1+ to match the current SDK requirements.
 
 ### CocoaPods
 
@@ -41,7 +45,7 @@ $ brew
 4. Open the `.xcworkspace` file (white one) in the finder.
 <img src="readme_images/screenshot_2.png" width="400"/>
 
-> Run `$ pod update` for SDK updating. (Optional)
+> To update the SDK later, run `$ pod update CircleProgrammableWalletSDK`. (Optional)
 
 ## Run the project (with Xcode)
 
